@@ -53,3 +53,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/events/all', 'HomeController@eventsAll')->name('events.all');
 Route::get('/events/top', 'HomeController@eventsTop')->name('events.top');
 Route::get('/event/detail/{id}', 'HomeController@eventDetail')->name('events.detail');
+
+Route::get("/event_fav/{id}",'MyaccountController@event_fav')->name("event_fav");
+Route::get("/event_unfav/{id}",'MyaccountController@event_unfav')->name("event_unfav");
+Route::get("/favourites",'MyaccountController@favourites')->name("favourites");
+Route::get("/account",'MyaccountController@account')->name("account");
+Route::post("/account",'MyaccountController@account_post')->name("account_post");
+Route::get("/change-password",'MyaccountController@changepassword')->name("change-password");
+Route::post("/change-password",'MyaccountController@changepassword_post')->name("change-password_post");
+Route::get("/manage-categories",'MyaccountController@managecategories')->name("manage-categories");
+Route::post("/manage-categories",'MyaccountController@managecategories_post')->name("manage-categories_post");

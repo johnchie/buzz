@@ -3,14 +3,14 @@ APP_ENV=local
 APP_KEY=base64:othcTegKJC7V4qKGx2bGnUMdu/TfwwJnK0KBF93YX4c=
 APP_DEBUG=true
 APP_LOG_LEVEL=debug
-APP_URL=http://localhost
+APP_URL=http://localhost/buzzpng/
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=projectd_buzzpng
-DB_USERNAME=projectd_buzzpng
-DB_PASSWORD=+U7@lJxy)@#b
+DB_USERNAME=root
+DB_PASSWORD=
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file

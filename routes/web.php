@@ -63,3 +63,6 @@ Route::get("/change-password",'MyaccountController@changepassword')->name("chang
 Route::post("/change-password",'MyaccountController@changepassword_post')->name("change-password_post");
 Route::get("/manage-categories",'MyaccountController@managecategories')->name("manage-categories");
 Route::post("/manage-categories",'MyaccountController@managecategories_post')->name("manage-categories_post");
+
+Route::post('/user/registration', 'UserController@registration')->name('user.registration');
+Route::post('/user/login', 'UserController@login')->name('user.login');

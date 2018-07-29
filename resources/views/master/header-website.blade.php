@@ -84,3 +84,14 @@
       </div><!--/.rightpart --> 
     </div><!--/.wrap--> 
   </header><!--/#header-->
+@if (session('failure'))
+<div class="alert alert-waring" style="background: red" >
+    {{ session('failure') }}
+</div>
+@endif
+
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif

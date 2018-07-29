@@ -53,3 +53,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/events/all', 'HomeController@eventsAll')->name('events.all');
 Route::get('/events/top', 'HomeController@eventsTop')->name('events.top');
 Route::get('/event/detail/{id}', 'HomeController@eventDetail')->name('events.detail');
+
+
+Route::post('/user/registration', 'UserController@registration')->name('user.registration');
+Route::post('/user/login', 'UserController@login')->name('user.login');

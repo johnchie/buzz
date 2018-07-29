@@ -25,7 +25,6 @@ class UserController extends Controller
         
         $response = array();
         
-        
         $email = $request->email;
         $password = $request->password;
         if (Auth::attempt(array('email' => $email, 'password' => $password))){
@@ -87,6 +86,9 @@ class UserController extends Controller
         $rule  =  array(
             'email' => 'unique:users',
             //'contact_number' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'password' => 'required',
         ) ;
 
         $validator = Validator::make($data,$rule);
@@ -201,19 +203,6 @@ class UserController extends Controller
 
         return response()->json($response);
     }
-    
-    public function logout(Request $request){
-        $userId = $request->user_id;
-        
-        $user = User::find($userId);
-        $user->device_token = '';
-        $user->save();
-        
-        $response['status'] = true;
-        $response['message'] = 'Successfully logout.';
-        
-        return response()->json($response);
-    }
 
     public function myProfile(Request $request)
     {
@@ -279,5 +268,13 @@ class UserController extends Controller
     public function createUser()
     {
         return view('users.create');
+    }
+    
+    public function logout(Request $request){
+        Session::flush();
+        Session::forget('user');
+        Auth::logout();
+        $request->session()->flash('success', 'You have successfully logged out');
+        return redirect()->route('home');
     }
 }

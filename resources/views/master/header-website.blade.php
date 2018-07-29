@@ -51,7 +51,7 @@
                                         <li><a href="{{route("account")}}" title="Account">Account</a></li>
                                         <li><a href="manage-categories.html" title="Manage Categories">Manage Categories</a></li>
                                         <li><a href="change-password.html" title="Change Password">Change Password</a></li>
-                                        <li><a href="#" title="Logout">Logout</a></li>
+                                        <li><a href="{{route("logout")}}" title="Logout">Logout</a></li>
                                     </ul>
                                 </li>
                                 @endif

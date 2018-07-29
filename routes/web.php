@@ -62,6 +62,7 @@ Route::post("/account",'MyaccountController@account_post')->name("account_post")
 Route::get("/change-password",'MyaccountController@changepassword')->name("change-password");
 Route::post("/change-password",'MyaccountController@changepassword_post')->name("change-password_post");
 Route::get("/manage-categories",'MyaccountController@managecategories')->name("manage-categories");
+Route::get("/deletecategory/{id}",'MyaccountController@deletecategory')->name("deletecategory");
 Route::post("/manage-categories",'MyaccountController@managecategories_post')->name("manage-categories_post");
 
 Route::post('/user/registration', 'UserController@registration')->name('user.registration');

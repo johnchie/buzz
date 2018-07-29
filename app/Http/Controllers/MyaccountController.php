@@ -17,8 +17,15 @@ class MyaccountController extends Controller {
      * @return void
      */
     public function __construct() {
-        //$this->middleware('auth');
-        $this->user_id = 4;
+        $this->middleware(function ($request, $next) {
+            $user= \Auth::user();
+            if(!empty($user)){
+                $this->user_id = $user->user_id;
+                return $next($request);
+            }else{
+                return redirect()->route('home');
+            }
+        });
     }
 
     /**
@@ -158,6 +165,23 @@ class MyaccountController extends Controller {
             $msg = "Problem in add category in your list";
         }
 
+        return redirect()->route("manage-categories")->with("message", $msg);
+    }
+    
+    public function deletecategory($id){
+        $user_cat = \App\Usercategories::where("category_id",$id)->where('user_id',$this->user_id)->get()->toArray();
+        
+        if(!empty($user_cat)){
+            $is_deleted = \App\Usercategories::find($user_cat[0]['id'])->delete();
+            if($is_deleted){
+                $msg = "Category is deleted";
+            }else{
+                $msg = "Problem while deleting category";
+            }
+        }else{
+            $msg = "Problem while deleting category";
+        }
+        
         return redirect()->route("manage-categories")->with("message", $msg);
     }
 

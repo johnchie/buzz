@@ -102,25 +102,15 @@
         </div><!--/.pop-contentbox --> 
     </div><!--/.popup-block --> 
 </div>
-<script src="{{ URL::asset('public/website/js/vendor/jquery.js') }}"></script> 
-<script src="{{ URL::asset('public/website/js/vendor/jquery.ezmark.min.js') }}"></script> 
-<script src="{{ URL::asset('public/website/js/vendor/jquery.matchHeight-min.js') }}"></script> 
-<script src="{{ URL::asset('public/website/js/vendor/owl.carousel.min.js') }}"></script> 
-<script src="{{ URL::asset('public/website/js/vendor/jquery-ui.js') }}"></script>
-<script src="{{ URL::asset('public/website/js/jquery.mixitup.min.js') }}"></script> 
-<script src="{{ URL::asset('public/website/js/swiper.min.js') }}"></script> 
-<script src="{{ URL::asset('public/website/js/general.js') }}"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
 
 <script type="text/javascript">
-jQuery(document).ready(function (jQuery) {
-//    jQuery.validator.addMethod('filesize', function (value, element, param) {
-//        return this.optional(element) || (element.files[0].size <= param)
-//    }, 'File size must be less than 2 MB');
-    jQuery("#signup_form").validate({
+    jq = jQuery.noConflict;
+jq(document).ready(function (jq) {
+    jq("#signup_form").validate({
         rules: {
             first_name: {
                 required: true
@@ -134,14 +124,23 @@ jQuery(document).ready(function (jQuery) {
         errorPlacement: function (error, element) {
             var next = element;
             if (element.hasClass('file'))
-                jQuery(error).insertAfter(jQuery(element).parents(".file-input"));
+                jq(error).insertAfter(jq(element).parents(".file-input"));
             else if (element.hasClass('chosen-select'))
-                jQuery(error).insertAfter(jQuery(element).siblings(".chosen-container"));
+                jq(error).insertAfter(jq(element).siblings(".chosen-container"));
             else
-                jQuery(error).insertAfter(jQuery(element));
+                jq(error).insertAfter(jq(element));
         },
     });
 });
 </script>
+
+<script src="{{ URL::asset('public/website/js/vendor/jquery.js') }}"></script> 
+<script src="{{ URL::asset('public/website/js/vendor/jquery.ezmark.min.js') }}"></script> 
+<script src="{{ URL::asset('public/website/js/vendor/jquery.matchHeight-min.js') }}"></script> 
+<script src="{{ URL::asset('public/website/js/vendor/owl.carousel.min.js') }}"></script> 
+<script src="{{ URL::asset('public/website/js/vendor/jquery-ui.js') }}"></script>
+<script src="{{ URL::asset('public/website/js/jquery.mixitup.min.js') }}"></script> 
+<script src="{{ URL::asset('public/website/js/swiper.min.js') }}"></script> 
+<script src="{{ URL::asset('public/website/js/general.js') }}"></script>
 </body>
 </html>

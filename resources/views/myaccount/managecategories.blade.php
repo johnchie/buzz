@@ -17,7 +17,7 @@
                                 <h4>Selected Categories</h4>
                                 <ul class="formlist">
                                     @foreach($user_categories as $cat)
-                                    <li><span href="#" class="button">{{$cat->name}} <em> X </em> </span></li>
+                                    <li><a href="{{route('deletecategory',$cat->id)}}" class="button">{{$cat->name}} <em> X </em> </a></li>
                                     @endforeach
                                 </ul><!--/.formlist -->
                             </div><!--/.cat-box -->

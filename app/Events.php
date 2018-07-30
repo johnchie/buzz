@@ -21,6 +21,6 @@ class Events extends Model
 
     
     public static function getTopEvents(){
-        return Events::where('top_events', 1)->get();
+        return Events::where('top_events', 1)->where('event_status', 1)->get();
     }
 }

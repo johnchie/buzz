@@ -69,3 +69,7 @@ Route::post("/manage-categories",'MyaccountController@managecategories_post')->n
 
 Route::post('/user/registration', 'UserController@registration')->name('user.registration');
 Route::post('/user/login', 'UserController@login')->name('user.login');
+
+Route::get('/advertiser', 'AdvertiserController@adv_list')->name('advlist');
+Route::get('/contactus', 'ContactusController@index')->name('contactus');
+Route::get('/occations', 'HomeController@occations')->name('occations');

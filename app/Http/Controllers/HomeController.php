@@ -43,7 +43,7 @@ class HomeController extends Controller
         $categorys = Category::All();
         
         $eventsarray = array();
-        $events = Events::All();
+        $events = Events::where('event_type', 1)->where('event_status', 1)->get();
         foreach($events as $event){
             $category = Category::find($event->category_id);
             $event['category_name'] = $category['name'];
@@ -70,5 +70,20 @@ class HomeController extends Controller
     public function eventDetail($id){
         $event = Events::find($id);
         return view('home.eventDetail', array('event'=>$event));  
+    }
+    
+    public function occations(){
+        
+        $categorys = Category::All();
+        
+        $eventsarray = array();
+        $events = Events::where('event_type', 2)->where('event_status', 1)->get();
+        foreach($events as $event){
+            $category = Category::find($event->category_id);
+            $event['category_name'] = $category['name'];
+            $eventsarray[] = $event;
+        }
+        
+        return view('home.occations', array('events'=>$eventsarray,'categorys'=>$categorys));
     }
 }

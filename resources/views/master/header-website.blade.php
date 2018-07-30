@@ -17,7 +17,7 @@
         <script src="{{ URL::asset('public/website/js/vendor/modernizr.min.js') }}"></script>
         <!--[if IE 9]>
                 <link rel="stylesheet" href="css/ie.css">
-            <![endif]-->
+        <![endif]-->
     </head>
     <body>
         <div id="wrapper">
@@ -36,9 +36,9 @@
                                 <li class="active"><a href="#home" title="Home">Home</a></li>
                                 <li><a href="#topevents" title="Top Events">Top Events</a></li>
                                 <li><a href="#events" title="Events">Events</a></li>
-                                <li><a href="occasions.html" title="Occasions">Occasions</a></li>
-                                <li><a href="advertisers.html" title="Advertisers">Advertisers</a></li>
-                                <li><a href="contact-us.html" title="Contact us">Contact us</a></li>
+                                <li><a href="#" onclick="javascript:location.href ='{{route("occations")}}'" title="Occasions">Occasions</a></li>
+                                <li><a href="#" onclick="javascript:location.href ='{{route("advlist")}}'" title="Advertisers">Advertisers</a></li>
+                                <li><a href="#" onclick="javascript:location.href ='{{route("contactus")}}'" title="Contact us">Contact us</a></li>
                                 @if(!Session::has('U_ID'))
                                 <li><a href="javascript:void(0)" class="poptrigger" data-rel="login" title="Sign in">Sign in</a></li>
                                 @else

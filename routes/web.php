@@ -43,6 +43,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/edit-user/{id}','UserController@editUser')->name('user');
     Route::get('/delete-user/{id}','UserController@deleteUser')->name('user');
 
+    
+    Route::get('/approve-event/{id}', 'EventsController@approve')->name('approve-event');
 });
 
 Auth::routes();

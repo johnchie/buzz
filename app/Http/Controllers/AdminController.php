@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Input;
 use Auth;
 use Hash;
 use Validator;
 use Session;
-
 use App\Admin;
 use App\User;
 use App\Booking;
@@ -17,16 +15,25 @@ use App\Faq;
 use App\GuestUsers;
 use App\Notification;
 
-class AdminController extends Controller
-{
+class AdminController extends Controller {
+
+    protected $user_data;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
+    public function __construct() {
+        //$this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $type = $request->session()->get("admintype");
+            if ($type != "advertiser" && $type != "admin") {
+                Auth::logout();
+                return redirect("/");
+            }
+            return $next($request);
+        });
     }
 
     /**
@@ -34,10 +41,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $admin = admin::All();
-        return view('admin.index', array('admin'=>$admin));
+        return view('admin.index', array('admin' => $admin));
     }
 
     /**
@@ -45,8 +51,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view('admin.create');
     }
 
@@ -56,8 +61,7 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $admin = new Admin();
         $admin->name = $request->input('name');
         $admin->email = $request->input('email');
@@ -65,18 +69,15 @@ class AdminController extends Controller
         $admin->remember_token = 'sadhflks';
         $admin->role = $request->input('role');
 
-        if($admin->save())
-        {
+        if ($admin->save()) {
             Session::flash('type', true);
             Session::flash('message', "New admin added, successfully!");
-        }
-        else
-        {
+        } else {
             Session::flash('type', false);
             Session::flash('message', "Some problem in add admin, please try after some time!");
         }
 
-        return redirect("/admin/admin");    
+        return redirect("/admin/admin");
     }
 
     /**
@@ -85,8 +86,7 @@ class AdminController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function show(Price $price)
-    {
+    public function show(Price $price) {
         //
     }
 
@@ -96,10 +96,9 @@ class AdminController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $admin = Admin::find($id);
-        return view('admin.edit', array('admin'=>$admin));
+        return view('admin.edit', array('admin' => $admin));
     }
 
     /**
@@ -109,20 +108,16 @@ class AdminController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
+    public function update(Request $request) {
         $admin = Admin::find($request->input('id'));
         $admin->name = $request->input('name');
         $admin->email = $request->input('email');
         $admin->role = $request->input('role');
 
-        if($admin->save())
-        {
+        if ($admin->save()) {
             Session::flash('type', true);
             Session::flash('message', "Admin updated, successfully!");
-        }
-        else
-        {
+        } else {
             Session::flash('type', false);
             Session::flash('message', "Some problem in update admin, please try after some time!");
         }
@@ -135,20 +130,17 @@ class AdminController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $admin = Admin::find($id);
-        
-        if($admin->delete())
-        {
+
+        if ($admin->delete()) {
             Session::flash('type', true);
             Session::flash('message', "Admin deleted, successfully!");
-        }
-        else
-        {
+        } else {
             Session::flash('type', false);
             Session::flash('message', "Some problem in delete admin, please try after some time!");
         }
         return redirect("/admin/admin");
     }
+
 }

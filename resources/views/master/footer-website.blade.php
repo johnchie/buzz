@@ -9,9 +9,9 @@
             </div><!--/.white-box -->
             <div class="same-padd">
                 <ul class="fmenu">
-                    <li><a href="#" title="About Us">About Us</a></li>
-                    <li><a href="#" title="Contact Us">Contact Us</a></li>
-                    <li><a href="#" title="Privacy Policy">Privacy Policy</a></li>
+                    <li><a href="{{route('aboutus')}}" title="About Us">About Us</a></li>
+                    <li><a href="{{route('contactus')}}" title="Contact Us">Contact Us</a></li>
+                    <li><a href="{{route('privacy')}}" title="Privacy Policy">Privacy Policy</a></li>
                 </ul><!--/.fmenu -->
                 <div class="social">
                     <li><a href="#"><img src="{{ URL::asset('public/website/images/fb.png') }}" alt=""></a></li>

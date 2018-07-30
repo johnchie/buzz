@@ -70,18 +70,18 @@
             </div>
 
             @if(Session::has('message'))
-                @if(Session::has('type') and Session::get('type')=='true')
-                <div class="alert bg-success">
-                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
-                    <span class="text-semibold">Well done!</span> {{ Session::get('message') }}
-                </div>
-                @endif
-                @if(Session::has('type') and Session::get('type')=='false')
-                <div class="alert bg-danger">
-                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
-                    <span class="text-semibold">Well done!</span> {{ Session::get('message') }}
-                </div>
-                @endif
+            @if(Session::has('type') and Session::get('type')=='true')
+            <div class="alert bg-success">
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+                <span class="text-semibold">Well done!</span> {{ Session::get('message') }}
+            </div>
+            @endif
+            @if(Session::has('type') and Session::get('type')=='false')
+            <div class="alert bg-danger">
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+                <span class="text-semibold">Well done!</span> {{ Session::get('message') }}
+            </div>
+            @endif
             @endif
 
             <table class="table" id="datatable">
@@ -93,12 +93,13 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Venue</th>
+                        <th>Status</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php $i = 1; ?>
-                @foreach($data as $category)
+                    <?php $i = 1; ?>
+                    @foreach($data as $category)
                     <tr>
                         <td><?php echo $i++ ?></td>
                         <td><?php echo $category->title ?></td>
@@ -106,6 +107,17 @@
                         <td><?php echo $category->start_date ?></td>
                         <td><?php echo $category->end_date ?></td>
                         <td><?php echo $category->venue ?></td>
+                        <td>
+                            @if($category->event_status == 1)
+                            Approved
+                            @else
+                            @if(session("admintype") == "admin")
+                            <a class="btn btn-success" href="{{route("approve-event",$category->id)}}">Not Approve</a>
+                            @else
+                            Not Approved
+                            @endif
+                            @endif
+                        </td>
                         <td class="text-center">
                             <ul class="icons-list">
                                 <li class="dropdown">
@@ -121,18 +133,18 @@
                             </ul>
                         </td>
                     </tr>
-                @endforeach
+                    @endforeach
                 </tbody>
                 <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Short Description</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Venue</th>
-                    <th class="text-center">Actions</th>
-                </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Short Description</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Venue</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
                 </tfoot>
             </table>
         </div>
@@ -145,5 +157,5 @@
 <script type="text/javascript">
     $("#datatable").DataTable();
 </script>
-<script type="text/javascript"> $('#events').addClass('active'); </script>
+<script type="text/javascript"> $('#events').addClass('active');</script>
 @include('master.footer')

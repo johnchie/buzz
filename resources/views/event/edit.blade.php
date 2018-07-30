@@ -80,11 +80,11 @@
 
                 <p class="content-group-lg"></p>
 
-                <?php  $error_keys = array(); ?>
+                <?php $error_keys = array(); ?>
 
                 @if ($errors->any())
 
-                    <?php $error_keys = $errors->keys(); ?>
+                <?php $error_keys = $errors->keys(); ?>
 
                 @endif
 
@@ -114,7 +114,7 @@
 
                                             @if(in_array('title',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -146,7 +146,7 @@
 
                                             @if(in_array('short_description',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -178,7 +178,7 @@
 
                                             @if(in_array('description',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -210,7 +210,7 @@
 
                                             @if(in_array('image',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -246,7 +246,7 @@
 
                                             @foreach($category as $cat)
 
-                                                <option value="{{ $cat->id }}" @if($data->category_id == $cat->id) {{ 'selected' }}  @endif >{{ $cat->name }}</option>
+                                            <option value="{{ $cat->id }}" @if($data->category_id == $cat->id) {{ 'selected' }}  @endif >{{ $cat->name }}</option>
 
                                             @endforeach
 
@@ -256,7 +256,7 @@
 
                                             @if(in_array('category_id',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -288,7 +288,7 @@
 
                                             @if(in_array('latitude',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -320,7 +320,7 @@
 
                                             @if(in_array('longtitude',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -352,7 +352,7 @@
 
                                             @if(in_array('start_date ',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -384,7 +384,7 @@
 
                                             @if(in_array('end_date',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -416,7 +416,7 @@
 
                                             @if(in_array('venue',$error_keys))
 
-                                                <i class="icon-notification2"></i>
+                                            <i class="icon-notification2"></i>
 
                                             @endif
 
@@ -556,6 +556,26 @@
                             </div>
                         </div>
                         
+                        <div class="form-group @if(in_array('occasions',$error_keys)) {{ "has-error" }}   @endif">
+
+                            <label class="control-label col-lg-2">Mark this event as Occasions</label>
+
+                            <div class="col-lg-10">
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+
+                                        <input type="checkbox" value="1" name="occasions" @if($data->event_type == 2) {{ 'checked' }}  @endif>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </fieldset>
 
 
@@ -592,6 +612,6 @@
 
 <!-- /main content -->
 
-<script type="text/javascript"> $('#events').addClass('active'); </script>
+<script type="text/javascript"> $('#events').addClass('active');</script>
 
 @include('master.footer')

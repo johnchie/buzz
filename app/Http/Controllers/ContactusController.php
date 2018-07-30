@@ -38,4 +38,12 @@ class ContactusController extends Controller {
         $params = array();
         return view('contactus.privacy', array('params' => $params));
     }
+    
+    /**
+     * terms page
+     */
+    public function terms() {
+        $params = array();
+        return view('contactus.terms', array('params' => $params));
+    }
 }

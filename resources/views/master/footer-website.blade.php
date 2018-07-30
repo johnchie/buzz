@@ -40,11 +40,11 @@
             </div><!--/.facebook-login -->
             <h5>OR</h5>
             <div class="main-login">
-                <form id="login_form" name="signup_form" method="post" action="{{ URL::route('user.login')}}">
+                <form id="login_form" name="login_form" method="post" action="{{ URL::route('user.login')}}">
                     <ul class="formlist">
                         <li><input type="email" name="email" placeholder="Enter your Email" /></li>
                         <li><input type="password" name="password" placeholder="Enter your Password" /></li>
-                        <li><input type="checkbox" name="login_agree" id="default-checkbox"><label for="default-checkbox">I agree to the  <a href="#" title="">Terms & Conditions</a> & <a href="#" title="">Privacy Policy</a></label></li>
+                        <li><input type="checkbox" name="login_agree" id="default-checkbox"><label for="default-checkbox">I agree to the  <a href="{{route('terms')}}" title="">Terms & Conditions</a> & <a href="{{route('privacy')}}" title="">Privacy Policy</a></label></li>
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <li><input type="submit" value="Log In"></li>
                     </ul>
@@ -67,36 +67,35 @@
             </div><!--/.facebook-login -->
             <h5>OR</h5>
             <div class="main-login">
-                
                 <form id="signup_form" name="signup_form" method="post" action="{{ URL::route('user.registration')}}">
                     <ul class="formlist">
                         <li>
                             <label>First Name</label>
-                            <input type="text" title="Enter first name" name='first_name' id="first_name" class="required" placeholder="" />
+                            <input type="text" name='first_name' placeholder="" />
                         </li>
                         <li>
                             <label>Last Name</label>
-                            <input type="text" name="last_name" class="required" placeholder="" />
+                            <input type="text" name="last_name" placeholder="" />
                         </li>
                         <li>
                             <label>Email Address</label>
-                            <input type="email" name="email" class="required" placeholder="" />
+                            <input type="email" name="email" placeholder="" />
                         </li>
                         <li>
                             <label>Password</label>
-                            <input type="password" name='password' class="required" placeholder="" />
+                            <input type="password" name='password' placeholder="" />
                         </li>
                         <li>
                             <label>Confirm Password</label>
-                            <input type="password" name="confirm_password" class="required" placeholder="" />
+                            <input type="password" name="confirm_password" placeholder="" />
                         </li>
                         <li class="wider">
-                            <input type="checkbox" class="required" id="agree"><label for="agree">I agree to the  <a href="#" title="">Terms & Conditions</a> & <a href="#" title="">Privacy Policy</a></label>
+                            <input type="checkbox" id="agree"><label for="agree">I agree to the  <a href="{{route('terms')}}" title="">Terms & Conditions</a> & <a href="{{route('privacy')}}" title="">Privacy Policy</a></label>
                         </li>
-                        <li><input type="submit" class="signup_btn" value="Sign Up"></li>
+                        <li><input type="submit" value="Sign Up"></li>
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     </ul>
-            </form>
+                </form>
             </div><!--/.main-login -->
             <h5>Don't have an account? <a href="#" class="login poptrigger" data-rel="login" title="">Sign in</a></h5>
         </div><!--/.pop-contentbox --> 
@@ -108,7 +107,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
 
 <script type="text/javascript">
-    jq = jQuery.noConflict;
+jq = jQuery.noConflict;
 jq(document).ready(function (jq) {
     jq("#signup_form").validate({
         rules: {
@@ -116,20 +115,11 @@ jq(document).ready(function (jq) {
                 required: true
             }
         },
-        messages: {
-            first_name: {
-                required: 'Please enter first name'
-            }
-        },
-        errorPlacement: function (error, element) {
-            var next = element;
-            if (element.hasClass('file'))
-                jq(error).insertAfter(jq(element).parents(".file-input"));
-            else if (element.hasClass('chosen-select'))
-                jq(error).insertAfter(jq(element).siblings(".chosen-container"));
-            else
-                jq(error).insertAfter(jq(element));
-        },
+        submitHandler: function (form) {
+            console.log('test');
+            return false;
+            //form.submit();
+        }
     });
 });
 </script>

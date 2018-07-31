@@ -31,7 +31,15 @@
                   <div class="action-box">
                     <div class="event-date">
                       <ul class="share-option-small">
-                        <li><a href="#" title=""><img src="{{ URL::asset('public/website/images/heart-icon.png') }}" alt=""></a></li>
+                        <li>
+                            <a href="javascript:void(0);" class="event_like" attr_id="{{ $event->id }}" attr_flag="{{ $event->flag }}" title="">
+                                @if($event->flag == '2')
+                                  <img src="{{ URL::asset('public/website/images/fill-heart-icon.png') }}" alt="">
+                                @else
+                                  <img src="{{ URL::asset('public/website/images/heart-icon.png') }}" alt="">
+                                @endif
+                            </a>
+                        </li>
                         <li><a href="#" title=""><img src="{{ URL::asset('public/website/images/share-icon.png') }}" alt=""></a></li>
                       </ul><!--/.share-option-small --> 
                     </div><!--/.event-date -->

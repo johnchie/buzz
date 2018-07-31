@@ -27,36 +27,36 @@ class UserController extends Controller
         
         $email = $request->email;
         $password = $request->password;
-        if (Auth::attempt(array('email' => $email, 'password' => $password))){
+        $devicetype = $request->device_type;
+         
+        if (Auth::attempt(array('email' => $email, 'password' => $password, 'device_type' => $devicetype))){
             
             $userData = Auth::user();
             $userData['user_image'] = url('/').'/public/uploads/'.$userData['user_image'];
-            
-            $request->session()->put('U_ID', $userData['user_id']);
-            $request->session()->put('U_NAME', trim($userData['first_name'] . " " . $userData['last_name']));
-            $request->session()->put('U_EMAIL', $userData['email']);
-            
-            $request->session()->flash('success', 'Login successfully!');
-            return redirect()->route('home');
+                    
+            $response['status'] = true;
+            $response['message'] = 'Successfully login';
+            $response['user_data'] = $userData;
         }else{
-            $request->session()->flash('failure', 'Invalid email/password.');
-            return redirect()->route('home');
+            $response['status'] = false;
+            $response['message'] = 'Email and password not match.';
         }
         
+        return response()->json($response);
     }
     
     public function registration(Request $request){
-        //$response = array();
+        $response = array();
         $firstName = $request->first_name;
         $lastName  = $request->last_name;
         $email     = $request->email;
         $password  = Hash::make($request->password);
-        //$contactNumber = $request->contact_number;
-        //$deviceType  = $request->device_type;
-        //$deviceToken = $request->device_token;
-        //$location = $request->location;
-        //$latitude = $request->latitude;
-        //$longitude = $request->longitude;
+        $contactNumber = $request->contact_number;
+        $deviceType  = $request->device_type;
+        $deviceToken = $request->device_token;
+        $location = $request->location;
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
         
         $photoName = '';
         if(Input::hasFile('user_image'))
@@ -70,41 +70,43 @@ class UserController extends Controller
         $user->last_name = $lastName;
         $user->email = $email;
         $user->password = $password;
-        //$user->contact_number = $contactNumber;
-        $user->device_type = 'web';
-        $user->device_token = '';
+        $user->contact_number = $contactNumber;
+        $user->device_type = $deviceType;
+        $user->device_token = $deviceToken;
         $user->user_image = $photoName;
-        //$user->location = $location;
-        //$user->latitude = $latitude;
-        //$user->longitude = $longitude;
+        $user->location = $location;
+        $user->latitude = $latitude;
+        $user->longitude = $longitude;
 
         $data = array(
             'email' => $user->email,
-            //'contact_number' => $user->contact_number,
+            'contact_number' => $user->contact_number,
         );
 
         $rule  =  array(
             'email' => 'unique:users',
-            //'contact_number' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'password' => 'required',
+            'contact_number' => 'required',
         ) ;
 
         $validator = Validator::make($data,$rule);
         if ($validator->fails()){
+            
             $messages = $validator->errors();
-            $request->session()->flash('failure', $messages);
+            $response['success'] = false;
+            $response['message'] = $messages;
         }else{
             $user->save();
             if($user){
-                $request->session()->flash('success', 'Signup done successfully!');
+                $response['status'] = true;
+                $response['message'] = 'Successfully Registration';
+                $response['user_data'] = $user;
             }else{
-                $request->session()->flash('failure', 'Problem in performing action, Please try again!');
+                $response['status'] = false;
+                $response['message'] = 'Problem in registration. Please try again later';
             }            
         }
         
-        return redirect()->route('home');
+        return response()->json($response);
     }
     
     public function forgotPassword(Request $request){
@@ -203,6 +205,19 @@ class UserController extends Controller
 
         return response()->json($response);
     }
+    
+    public function logout(Request $request){
+        $userId = $request->user_id;
+        
+        $user = User::find($userId);
+        $user->device_token = '';
+        $user->save();
+        
+        $response['status'] = true;
+        $response['message'] = 'Successfully logout.';
+        
+        return response()->json($response);
+    }
 
     public function myProfile(Request $request)
     {
@@ -268,13 +283,5 @@ class UserController extends Controller
     public function createUser()
     {
         return view('users.create');
-    }
-    
-    public function logout(Request $request){
-        Session::flush();
-        Session::forget('user');
-        Auth::logout();
-        $request->session()->flash('success', 'You have successfully logged out');
-        return redirect()->route('home');
     }
 }

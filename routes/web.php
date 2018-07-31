@@ -55,6 +55,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/events/all', 'HomeController@eventsAll')->name('events.all');
 Route::get('/events/top', 'HomeController@eventsTop')->name('events.top');
 Route::get('/event/detail/{id}', 'HomeController@eventDetail')->name('events.detail');
+Route::get('/event/favorite', 'HomeController@eventFavorite')->name('web_event.favorite');
 
 Route::get("/event_fav/{id}",'MyaccountController@event_fav')->name("event_fav");
 Route::get("/event_unfav/{id}",'MyaccountController@event_unfav')->name("event_unfav");
@@ -67,8 +68,8 @@ Route::get("/manage-categories",'MyaccountController@managecategories')->name("m
 Route::get("/deletecategory/{id}",'MyaccountController@deletecategory')->name("deletecategory");
 Route::post("/manage-categories",'MyaccountController@managecategories_post')->name("manage-categories_post");
 
-Route::post('/user/registration', 'UserController@registration')->name('user.registration');
-Route::post('/user/login', 'UserController@login')->name('user.login');
+Route::post('/webuser/registration', 'WebuserController@registration')->name('user.registration');
+Route::post('/webuser/login', 'WebuserController@login')->name('user.login');
 
 Route::get('/advertiser', 'AdvertiserController@adv_list')->name('advlist');
 Route::get('/contactus', 'ContactusController@index')->name('contactus');

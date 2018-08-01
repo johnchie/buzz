@@ -27,8 +27,15 @@
                         <div class="download-app">
                             <ul>
                                 <li>Download Our App</li>
-                                <li><a href="#" title="" target="_blank"><img src="{{ URL::asset('public/website/images/app-store.png') }}" alt=""></a></li>
-                                <li><a href="#" title="" target="_blank"><img src="{{ URL::asset('public/website/images/gplay-store.png') }}" alt=""></a></li>
+                                <?php
+                                $app_link = \DB::table("cms")->whereIn("page", array("android_app", "ios_app"))->get();
+                                $link_array = array();
+                                foreach ($app_link as $value) {
+                                    $link_array[$value->page] = $value->data;
+                                }
+                                ?>
+                                <li><a href="{{$link_array['android_app']}}" title="" target="_blank"><img src="{{ URL::asset('public/website/images/app-store.png') }}" alt=""></a></li>
+                                <li><a href="{{$link_array['ios_app']}}" title="" target="_blank"><img src="{{ URL::asset('public/website/images/gplay-store.png') }}" alt=""></a></li>
                             </ul>
                         </div>
                         <nav id="mainmenu">
@@ -57,42 +64,42 @@
                                 @endif
                             </ul>
                             <div class="search-box"> 
-                                <a href="#" class="search" title="search"><img src="{{ URL::asset('public/website/images/search.png') }}" alt=""></a> 
-                                <div class="search-filters">
-                                    <div class="check-box">
-                                        <ul>
-                                            <li><input type="radio" name="filter" id="all" checked><label for="all">All</label></li>
-                                            <li><input type="radio" name="filter" id="today"><label for="today">Today</label></li>
-                                            <li><input type="radio" name="filter" id="tomorrow"><label for="tomorrow">Tomorrow</label></li>
-                                            <li><input type="radio" name="filter" id="thisweek"><label for="thisweek">This Week</label></li>
-                                        </ul>
-                                    </div><!--/.check-box -->
-                                    <div class="filter-box">
-                                        <ul class="date-picker">
-                                            <li> <input type="text" class="datepicker" placeholder="Start Date" /> <span><img src="{{ URL::asset('public/website/images/calendar.png') }}" alt=""></span>  </li>
-                                            <li> <input type="text" class="datepicker" placeholder="End Date" /> <span><img src="{{ URL::asset('public/website/images/calendar.png') }}" alt=""></span>  </li>
-                                        </ul><!--/.date-picker -->
-                                        <div class="select-box">
-                                            <div class="custom-select">
-                                                <select>
-                                                    <option>Select Event Type</option>
-                                                    <option>ALL</option>
-                                                    <option>COMEDY</option>
-                                                    <option>CONFERENCES & WORKSHOPS</option>
-                                                    <option>EXHIBITION & PERFORMANCES</option>
-                                                    <option>FOOD & DRINK</option>
-                                                    <option>MUSIC</option>
-                                                    <option>TRAVEL & ACTIVITIES</option>
-                                                    <option>SPLASH 2018</option>
-                                                </select><!--/.select -->
-                                            </div><!--/.custom-select -->
-                                        </div><!--/.select-box -->
-                                        <div class="search-filter">
-                                            <input type="search" placeholder="Search for Events" />
-                                            <input type="button" >
-                                        </div><!--/.search-filter -->
-                                    </div>
-                                </div><!--/.search-filters -->
+                                <form action="{{route("search")}}" id="search_form" method="get">
+                                    <a href="#" class="search" title="search"><img src="{{ URL::asset('public/website/images/search.png') }}" alt=""></a> 
+                                    <div class="search-filters">
+<!--                                        <div class="check-box">
+                                            <ul>
+                                                <li><input type="radio" name="f" id="all" checked><label for="all">All</label></li>
+                                                <li><input type="radio" name="f" id="today"><label for="today">Today</label></li>
+                                                <li><input type="radio" name="f" id="tomorrow"><label for="tomorrow">Tomorrow</label></li>
+                                                <li><input type="radio" name="f" id="thisweek"><label for="thisweek">This Week</label></li>
+                                            </ul>
+                                        </div>/.check-box -->
+                                        <div class="filter-box">
+                                            <ul class="date-picker">
+                                                <li> <input type="text" name="sd" class="datepicker" placeholder="Start Date" /> <span><img src="{{ URL::asset('public/website/images/calendar.png') }}" alt=""></span>  </li>
+                                                <li> <input type="text" name="ed" class="datepicker" placeholder="End Date" /> <span><img src="{{ URL::asset('public/website/images/calendar.png') }}" alt=""></span>  </li>
+                                            </ul><!--/.date-picker -->
+                                            <div class="select-box">
+                                                <div class="custom-select">
+                                                    <select name="c">
+                                                        <option value="">Select Event Type</option>
+                                                        <?php
+                                                        $category_list = \App\Category::get();
+                                                        foreach ($category_list as $list) {
+                                                            echo "<option value'" . $list->id . "'>" . $list->name . "</option>";
+                                                        }
+                                                        ?>
+                                                    </select><!--/.select -->
+                                                </div><!--/.custom-select -->
+                                            </div><!--/.select-box -->
+                                            <div class="search-filter">
+                                                <input type="search" name="q" placeholder="Search for Events" />
+                                                <input type="button" onclick="jQuery('#search_form').submit()">
+                                            </div><!--/.search-filter -->
+                                        </div>
+                                    </div><!--/.search-filters -->
+                                </form>
                             </div>
                             <!--/.search-box --> 
                         </nav><!--/#mainmenu--> 

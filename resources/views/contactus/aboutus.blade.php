@@ -3,6 +3,7 @@
     <div class="same-padd advertisers">
         <div class="wrap">
             <h3>About Us</h3>
+            {!! $params->data !!}
         </div><!--/.wrap -->
     </div><!--/.advertisers -->
 </div><!--/#main -->

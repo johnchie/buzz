@@ -45,6 +45,9 @@ Route::prefix('admin')->group(function () {
 
     
     Route::get('/approve-event/{id}', 'EventsController@approve')->name('approve-event');
+    
+    Route::get('/cms-pages', 'CmsController@index')->name('cms-pages');
+    Route::post('/cms-pages', 'CmsController@update')->name('cms-pages-update');
 });
 
 Auth::routes();
@@ -70,6 +73,7 @@ Route::post("/manage-categories",'MyaccountController@managecategories_post')->n
 
 Route::post('/webuser/registration', 'WebuserController@registration')->name('user.registration');
 Route::post('/webuser/login', 'WebuserController@login')->name('user.login');
+Route::post('/webuser/ajaxlogin', 'WebuserController@ajaxlogin')->name('user.ajaxlogin');
 
 Route::get('/advertiser', 'AdvertiserController@adv_list')->name('advlist');
 Route::get('/contactus', 'ContactusController@index')->name('contactus');
@@ -77,3 +81,5 @@ Route::get('/aboutus', 'ContactusController@aboutus')->name('aboutus');
 Route::get('/privacy', 'ContactusController@privacy')->name('privacy');
 Route::get('/terms', 'ContactusController@terms')->name('terms');
 Route::get('/occations', 'HomeController@occations')->name('occations');
+
+Route::get('/search', 'EventsController@searchEventWeb')->name('search');

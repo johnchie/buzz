@@ -421,4 +421,56 @@ class EventsController extends Controller {
         return redirect('admin/show-all-events');
     }
 
+    public function searchEventWeb(Request $request) {
+        $data = array();
+        $sql = 'SELECT * FROM events WHERE 1=1';
+        if (!empty($request->get('c'))) {
+            $category = $request->c;
+            $sql.=' AND category_id =' . $category;
+        } else {
+            $category = '';
+        }
+
+        if (!empty($request->get('q'))) {
+            $title = $request->q;
+            $sql.=' AND title LIKE  "%' . $title . '%"';
+        } else {
+            $title = '';
+        }
+
+        if (!empty($request->get('sq'))) {
+            $date_from = $request->sd;
+            $sql.='AND start_date >  ' . $date_from . '';
+        } else {
+            $date_from = '';
+        }
+
+        if (!empty($request->get('ed'))) {
+            $date_to = $request->ed;
+            $sql.='AND end_date <  ' . $date_to . '';
+        } else {
+            $date_to = '';
+        }
+        $data = DB::select($sql);
+        
+        $user_id = \Session::get('U_ID');
+        foreach ($data as &$d) {
+            $category = Category::find($d->category_id);
+            $d->category_name = $category['name'];
+
+            if (!empty($user_id)) {
+                $is_liked = Eventslike::where('user_id', $user_id)->where('event_id', $d->id)->first();
+                if (!empty($is_liked)) {
+                    $d->flag = 2; //If like
+                } else {
+                    $d->flag = 1; //If not like
+                }
+            } else {
+                $d->flag = 1; //if user not logged in then default like option
+            }
+        }
+
+        return view("home.eventsearch", ['events' => $data]);
+    }
+
 }

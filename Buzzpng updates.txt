@@ -3,12 +3,19 @@ BuzzPng Updates
 Completed below modules
 > Login
 > Register
+> Facebook signup
+> Event Advance search [header]
 > Occasions
 > Header menu all pages created in laravel
 > Favourites
 > Account
 > Manage Category
 > Change Password
+> Terms and Conditions  [you can change this link from admin panel]
+> About us  [you can change this link from admin panel]
+> Privacy Policy  [you can change this link from admin panel]
+> Social links  [you can change this link from admin panel]
+> Play store and App store link [you can change this link from admin panel]
 
 NOTE: We have added "Mark this event as Occasions" field for separate occasion events in add event section on admin panel
 
@@ -21,20 +28,7 @@ On Going
 ==============
 Remaining
 ==============
-Facebook signup
-Event Advance search [header]
-
-Static pages remaining
-==================
 Contact us
-Terms and Conditions
-About us
-Privacy Policy
-Social links [footer]
-
-
-QUERY:
-=================
-Howmany platform you need to do share functionality like facebook, twitter etc on Events section
+Event Share
 
 Awaiting for your feedback.

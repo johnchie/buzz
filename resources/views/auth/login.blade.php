@@ -111,7 +111,7 @@
 
 					<!-- Footer -->
 					<div class="footer text-muted text-center">
-						&copy; 2018. <a href="http://www.blackswanss.com/">Black Swanss </a>
+						&copy; 2018. BuzzPng
 					</div>
 					<!-- /footer -->
 

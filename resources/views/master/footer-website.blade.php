@@ -147,17 +147,17 @@ jQuery('.event_like').click(function(){
                     if($this.attr('attr_flag') == 1){
                         $this.attr('attr_flag', 2);
                         if($this.attr('attr_large_icon') == 1){
-                            $this.find('img').attr('src','/public/website/images/fill-heart.png');
+                            $this.find('img').attr('src','{!! asset("/public/website/images/fill-heart.png") !!}');
                         }else{
-                            $this.find('img').attr('src','/public/website/images/fill-heart-icon.png');
+                            $this.find('img').attr('src','{!! asset("/public/website/images/fill-heart-icon.png") !!}');
                         }
                         alert('Event favorite successfully.');
                     }else{
                         $this.attr('attr_flag', 1);
                         if($this.attr('attr_large_icon') == 1){
-                            $this.find('img').attr('src','/public/website/images/heart.png');
+                            $this.find('img').attr('src','{!! asset("/public/website/images/heart.png") !!}');
                         }else{
-                            $this.find('img').attr('src','/public/website/images/heart-icon.png');
+                            $this.find('img').attr('src','{!! asset("/public/website/images/heart-icon.png") !!}');
                         }
                         alert('Event removed from favourite successfully.');
                     }

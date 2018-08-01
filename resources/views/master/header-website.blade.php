@@ -34,10 +34,12 @@
                         <nav id="mainmenu">
                             <ul>
                                 <li class="{{ Request::is( '/' ) || Request::is( 'home' ) ? 'active' : '' }}"><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#home' : route('home') }}" title="Home">Home</a></li>
-                                <li><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#topevents' : route('home') .'/#topevents' }}" title="Top Events">Top Events</a></li>
-                                <li><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#events' : route('home') .'/#events' }}" title="Events">Events</a></li>
+                                <li><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#topevents' : route('home') .'#topevents' }}" title="Top Events">Top Events</a></li>
+                                <li><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#events' : route('home') .'#events' }}" title="Events">Events</a></li>
                                 <li class="{{ Request::is( 'occations' ) ? 'active' : '' }}"><a href="#" onclick="javascript:location.href ='{{route("occations")}}'" title="Occasions">Occasions</a></li>
+                                @if(!Session::has('U_ID'))
                                 <li class="{{ Request::is( 'advertiser' ) ? 'active' : '' }}"><a href="#" onclick="javascript:location.href ='{{route("advlist")}}'" title="Advertisers">Advertisers</a></li>
+                                @endif
                                 <li class="{{ Request::is( 'contactus' ) ? 'active' : '' }}"><a href="#" onclick="javascript:location.href ='{{route("contactus")}}'" title="Contact us">Contact us</a></li>
                                 @if(!Session::has('U_ID'))
                                 <li><a href="javascript:void(0)" class="poptrigger" data-rel="login" title="Sign in">Sign in</a></li>
@@ -99,3 +101,14 @@
                     </div><!--/.rightpart --> 
                 </div><!--/.wrap--> 
             </header><!--/#header-->
+@if (session('failure'))
+            <div class="alert alert-info">
+                {{ session('failure') }}
+            </div>
+            @endif
+
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif

@@ -32,6 +32,7 @@ class WebuserController extends Controller
             $userData['user_image'] = url('/').'/public/uploads/'.$userData['user_image'];
             
             $request->session()->put('U_ID', $userData['user_id']);
+            $request->session()->put('U_TYPE', $userData['user_type']);
             $request->session()->put('U_NAME', trim($userData['first_name'] . " " . $userData['last_name']));
             $request->session()->put('U_EMAIL', $userData['email']);
             
@@ -45,6 +46,7 @@ class WebuserController extends Controller
     }
     
     public function registration(Request $request){
+        //echo "<pre>";print_r($request->all());die;
         //$response = array();
         $firstName = $request->first_name;
         $lastName  = $request->last_name;
@@ -79,9 +81,11 @@ class WebuserController extends Controller
 
         $data = array(
             'email' => $user->email,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'password' => $user->password,
             //'contact_number' => $user->contact_number,
         );
-
         $rule  =  array(
             'email' => 'unique:users',
             //'contact_number' => 'required',
@@ -93,7 +97,13 @@ class WebuserController extends Controller
         $validator = Validator::make($data,$rule);
         if ($validator->fails()){
             $messages = $validator->errors();
-            $request->session()->flash('failure', $messages);
+            if(!empty($messages)){
+                $msg_arr = json_decode($messages);
+                foreach($msg_arr as $msg){
+                    $message_str = $msg[0];
+                }
+                $request->session()->flash('failure', $message_str);
+            }
         }else{
             $user->save();
             if($user){

@@ -224,7 +224,7 @@ jQuery('.event_like').click(function () {
         success: function (response)
         {
             if (!response.mark) {
-                jQuery('.poptrigger').trigger('click');
+                jQuery('#login_click').find('.poptrigger').click();
             } else {
                 if (response.success) {
                     if ($this.attr('attr_flag') == 1) {

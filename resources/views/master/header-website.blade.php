@@ -49,7 +49,7 @@
                                 @endif
                                 <li class="{{ Request::is( 'contactus' ) ? 'active' : '' }}"><a href="#" onclick="javascript:location.href ='{{route("contactus")}}'" title="Contact us">Contact us</a></li>
                                 @if(!Session::has('U_ID'))
-                                <li><a href="javascript:void(0)" class="poptrigger" data-rel="login" title="Sign in">Sign in</a></li>
+                                <li id="login_click"><a href="javascript:void(0)" class="poptrigger" data-rel="login" title="Sign in">Sign in</a></li>
                                 @else
                                 <li class="afterlogin">
                                     <a href="javascript:void(0)" title="Sign in">

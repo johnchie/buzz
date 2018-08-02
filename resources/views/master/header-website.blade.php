@@ -23,11 +23,15 @@
                 position: relative;
             }
             .small_popup{
+                z-index: 999999 !important;
+                padding: 5px;
+                box-shadow: 1px 1px 1px #000;
                 display: none;
                 position: absolute;
-                left: 25px;
+                left: 20px;
                 width: 150px;
-                top: 0px;
+                top: -35px;
+                background-color: #9a1818;
             }
         </style>
     </head>

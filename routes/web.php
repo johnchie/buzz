@@ -39,9 +39,11 @@ Route::prefix('admin')->group(function () {
     Route::post('/update-profile', 'UserController@editProfile')->name('profile');
     
     Route::get('/show-all-users','UserController@allUsers')->name('user');
+    Route::get('/show-all-advertisers','UserController@allAdvertisers')->name('user');
     Route::get('/create-user','UserController@createUser')->name('user');
     Route::get('/edit-user/{id}','UserController@editUser')->name('user');
     Route::get('/delete-user/{id}','UserController@deleteUser')->name('user');
+    Route::get('/action-advertiser/{id}/{status}','UserController@actionAdvertiser')->name('action_adv_admin');
 
     
     Route::get('/approve-event/{id}', 'EventsController@approve')->name('approve-event');

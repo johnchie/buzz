@@ -40,6 +40,8 @@ class AdminLoginController extends Controller {
 
     public function logout() {
         Auth::logout();
+        \Session::flush();
+        \Session::forget('user');
         return redirect('/admin');
     }
 

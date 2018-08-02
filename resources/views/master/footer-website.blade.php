@@ -28,7 +28,6 @@
                         $data_array[$value->page] = $value->data;
                     }
                     ?>
-
                     <li><a target="_blank" href="{{$data_array['fb']}}"><img src="{{ URL::asset('public/website/images/fb.png') }}" alt=""></a></li>
                     <li><a target="_blank" href="{{$data_array['twitter']}}"><img src="{{ URL::asset('public/website/images/tw.png') }}" alt=""></a></li>
                     <li><a target="_blank" href="{{$data_array['linkedin']}}"><img src="{{ URL::asset('public/website/images/link.png') }}" alt=""></a></li>
@@ -77,10 +76,10 @@
                 <figure><img src="{{ URL::asset('public/website/images/popup-logo.png') }}" alt=""></figure>
             </div><!--/.popup-logo -->
             <h4>Create My Account</h4>
-            <div class="facebook-login">
+            <div class="facebook-login need_to_hide">
                 <a href="javasciprt:void(0)" class="facebook-login" title=""><img src="{{ URL::asset('public/website/images/fb-login.png') }}" alt=""></a>
             </div><!--/.facebook-login -->
-            <h5>OR</h5>
+            <h5 class="reg_or need_to_hide">OR</h5>
             <div class="main-login">
                 <form id="signup_form" name="signup_form" method="post" action="{{ URL::route('user.registration')}}">
                     <ul class="formlist">
@@ -109,10 +108,11 @@
                         </li>
                         <li><input type="submit" value="Sign Up"></li>
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                        <input type="hidden" name="reg_type" class="reg_type" value="1">
                     </ul>
                 </form>
             </div><!--/.main-login -->
-            <h5>Don't have an account? <a href="#" class="login poptrigger" data-rel="login" title="">Sign in</a></h5>
+            <h5>Have an account? <a href="#" class="login poptrigger" data-rel="login" title="">Sign in</a></h5>
         </div><!--/.pop-contentbox --> 
     </div><!--/.popup-block --> 
 </div>
@@ -283,7 +283,15 @@ function postToFeed(event) {
     FB.ui(obj, callback);
 }
 </script>
-
+<script>
+    jQuery(document).ready(function(){
+        jQuery(".subscribe_btn").click(function(){
+            $('.need_to_hide').hide();
+            $('.reg_type').val(2);  
+            
+        });
+    });
+</script>
 <script src="{{ URL::asset('public/website/js/vendor/jquery.js') }}"></script> 
 <script src="{{ URL::asset('public/website/js/vendor/jquery.ezmark.min.js') }}"></script> 
 <script src="{{ URL::asset('public/website/js/vendor/jquery.matchHeight-min.js') }}"></script> 

@@ -1,9 +1,9 @@
-BuzzPng Updates
-============================
+====================
 Completed below modules
+====================
 > Login
 > Register
-> Facebook signup & Login
+> Facebook signup & Login [Code is completed but need HTTPS on server, without HTTPS facebook login/signup will not work, currently facebook is supporting for http for only old applications, and old applications need to update to HTTPS before "October 6, 2018", new application must need HTTPS so we must need HTTPS, please check this link https://developers.facebook.com/docs/facebook-login/changelog#2018-07-02 ]
 > Event Advance search [header]
 > Occasions
 > Header menu all pages created in laravel
@@ -19,6 +19,7 @@ Completed below modules
 
 NOTE: We have added "Mark this event as Occasions" field for separate occasion events in add event section on admin panel
 NOTE: Removed "all","Today","Tommorow", "This week" options from header search because I will create dispute If I select "Today" and select start date as "10 aug 2017" to "15 aug 2017" then which date event system need to display?
+
 ===============
 On Going
 ===============

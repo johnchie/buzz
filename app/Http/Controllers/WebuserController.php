@@ -22,7 +22,7 @@ class WebuserController extends Controller {
         $response = array();
         $email = $request->email;
         $password = $request->password;
-        if (Auth::attempt(array('email' => $email, 'password' => $password))) {
+        if (Auth::attempt(array('email' => $email, 'password' => $password,'user_type' => 1))) {
 
             $userData = Auth::user();
             $userData['user_image'] = url('/') . '/public/uploads/' . $userData['user_image'];
@@ -34,7 +34,22 @@ class WebuserController extends Controller {
 
             $request->session()->flash('success', 'Login successfully!');
             return redirect()->route('home');
-        } else {
+        } else if (Auth::attempt(array('email' => $email, 'password' => $password,'user_type' => 2, 'is_adv_approved' => 1))) {
+            
+            $userData = Auth::user();
+            $userData['user_image'] = url('/') . '/public/uploads/' . $userData['user_image'];
+
+            $request->session()->put('U_ID', $userData['user_id']);
+            $request->session()->put('U_TYPE', $userData['user_type']);
+            $request->session()->put('U_NAME', trim($userData['first_name'] . " " . $userData['last_name']));
+            $request->session()->put('U_EMAIL', $userData['email']);
+
+            $request->session()->flash('success', 'Login successfully!');
+            return redirect()->route('admin.dashboard');
+        } else if (Auth::attempt(array('email' => $email, 'password' => $password,'user_type' => 2, 'is_adv_approved' => 0))) {
+            $request->session()->flash('failure', 'Your account will be activated soon.');
+            return redirect()->route('home');
+        }else {
             $request->session()->flash('failure', 'Invalid email/password.');
             return redirect()->route('home');
         }
@@ -73,7 +88,11 @@ class WebuserController extends Controller {
         //$user->location = $location;
         //$user->latitude = $latitude;
         //$user->longitude = $longitude;
-
+        
+        if(isset($request->reg_type) && $request->reg_type == 2){
+            $user->user_type = 2;
+        }
+        
         $data = array(
             'email' => $user->email,
             'first_name' => $user->first_name,

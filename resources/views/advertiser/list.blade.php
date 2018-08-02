@@ -17,7 +17,7 @@
                     <div class="plan-detail {{$plan['color']}}">
                         <h2>{{$plan['name']}}</h2>
                         <h5><sup>$</sup>{{$plan['price']}}/<span>{{$plan['unit']}}</span></h5>
-                        <a href="#" title="" class="button">subscribe</a>
+                        <a href="javascript:void(0);" title="Subscribe now" attr_id="{{$plan['id']}}" class="button subscribe_btn">subscribe</a>
                     </div>
                 </div><!--/.col -->
                 @endforeach
@@ -25,4 +25,5 @@
         </div><!--/.wrap -->
     </div><!--/.plans -->
 </div><!--/#main -->
+
 @include('master.footer-website')

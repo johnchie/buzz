@@ -85,7 +85,7 @@ class AdminController extends Controller {
      *
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function show(Price $price) {
         //
     }

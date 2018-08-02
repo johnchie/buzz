@@ -260,8 +260,30 @@ class UserController extends Controller
     }
     public function allUsers()
     {
-        $users = User::get();
+        $users = User::where('user_type', 1)->get();
         return view('users.show')->with('data',$users);
+    }
+    
+    public function allAdvertisers()
+    {
+        $users = User::where('user_type', 2)->get();
+        return view('users.advertiser_show')->with('data',$users);
+    }
+    
+    public function actionAdvertiser($user_id, $status){
+        $data['is_adv_approved'] = $status;
+        if(User::where('user_id',$user_id)->update($data))
+        {
+            Session::flash('type', 'true');
+            Session::flash('message', 'User is approved');
+            return redirect('admin/show-all-advertisers');
+        }
+        else
+        {
+            Session::flash('type', 'false');
+            Session::flash('message', 'Problem while change status');
+            return redirect('admin/show-all-advertisers');
+        }
     }
 
     public function deleteUser($id)

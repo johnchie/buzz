@@ -229,18 +229,18 @@ jQuery('.event_like').click(function () {
                 if (response.success) {
                     if ($this.attr('attr_flag') == 1) {
                         $this.attr('attr_flag', 2);
-                        if($this.attr('attr_large_icon') == 1){
-                            $this.find('img').attr('src','{!! asset("/public/website/images/fill-heart.png") !!}');
-                        }else{
-                            $this.find('img').attr('src','{!! asset("/public/website/images/fill-heart-icon.png") !!}');
+                        if ($this.attr('attr_large_icon') == 1) {
+                            $this.find('img').attr('src', '{!! asset("/public/website/images/fill-heart.png") !!}');
+                        } else {
+                            $this.find('img').attr('src', '{!! asset("/public/website/images/fill-heart-icon.png") !!}');
                         }
                         alert('Event favorite successfully.');
                     } else {
                         $this.attr('attr_flag', 1);
-                        if($this.attr('attr_large_icon') == 1){
-                            $this.find('img').attr('src','{!! asset("/public/website/images/heart.png") !!}');
-                        }else{
-                            $this.find('img').attr('src','{!! asset("/public/website/images/heart-icon.png") !!}');
+                        if ($this.attr('attr_large_icon') == 1) {
+                            $this.find('img').attr('src', '{!! asset("/public/website/images/heart.png") !!}');
+                        } else {
+                            $this.find('img').attr('src', '{!! asset("/public/website/images/heart-icon.png") !!}');
                         }
                         alert('Event removed from favourite successfully.');
                     }
@@ -258,6 +258,30 @@ jQuery('.event_like').click(function () {
         }
     });
 });
+
+jQuery(".share_btn").click(function () {
+    jQuery(this).parents(".share_container").find(".small_popup").css("display", "block");
+});
+
+jQuery(".close_share").click(function () {
+    jQuery(this).parent().css("display", "none");
+});
+function postToFeed(event) {
+    var obj = {
+        method: 'feed',
+        link: event.data("link"),
+        redirect_uri: event.data("link"),
+        picture: event.data("image"),
+        name: event.data("name"),
+        caption: event.data("location"),
+        description: 'Share blogs on facebook.'
+    };
+
+    function callback(response) {
+        
+    }
+    FB.ui(obj, callback);
+}
 </script>
 
 <script src="{{ URL::asset('public/website/js/vendor/jquery.js') }}"></script> 

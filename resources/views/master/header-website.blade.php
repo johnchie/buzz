@@ -18,6 +18,18 @@
         <!--[if IE 9]>
                 <link rel="stylesheet" href="css/ie.css">
         <![endif]-->
+        <style>
+            .share_container{
+                position: relative;
+            }
+            .small_popup{
+                display: none;
+                position: absolute;
+                left: 25px;
+                width: 150px;
+                top: 0px;
+            }
+        </style>
     </head>
     <body>
         <div id="wrapper">

@@ -288,7 +288,7 @@ function postToFeed(event) {
         jQuery(".subscribe_btn").click(function(){
             $('.need_to_hide').hide();
             $('.reg_type').val(2);  
-            
+            $('.register').click();
         });
     });
 </script>

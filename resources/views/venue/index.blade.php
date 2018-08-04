@@ -119,8 +119,8 @@
 
 <style>
     .col{
-        width: calc(25% - 30px);
-        margin: 0 15px;
+        width: calc(25% - 60px);
+        margin: 30px 30px 0 30px;
     }
     .clearfix{
         clear: both;
@@ -145,6 +145,7 @@
         margin: 0 auto;
         text-align: center;
         display: block;
+        padding:15px 0;
     }   
     .venue_title{
         color: #f75f29;
@@ -155,6 +156,12 @@
     .venue_etc{
         font-size:15px;
         text-transform: uppercase;
+    }
+    @media(max-width:767px){
+        .col{
+            width: calc(100% - 30px);
+            margin: 0 15px;
+        }
     }
 </style>
 @include('master.footer-website')

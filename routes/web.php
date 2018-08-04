@@ -85,3 +85,6 @@ Route::get('/terms', 'ContactusController@terms')->name('terms');
 Route::get('/occations', 'HomeController@occations')->name('occations');
 
 Route::get('/search', 'EventsController@searchEventWeb')->name('search');
+
+Route::any('/venue', 'VenueController@index')->name('venue_index');
+Route::any('/venue/detail/{id}', 'VenueController@detail')->name('venue.detail');

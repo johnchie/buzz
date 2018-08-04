@@ -57,6 +57,7 @@
                         <nav id="mainmenu">
                             <ul>
                                 <li class="{{ Request::is( '/' ) || Request::is( 'home' ) ? 'active' : '' }}"><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#home' : route('home') }}" title="Home">Home</a></li>
+                                <li class="{{ Request::is( 'venue_index' ) ? 'active' : '' }}"><a href="{{ route('venue_index') }}" title="Venue">Venue</a></li>
                                 <li><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#topevents' : route('home') .'#topevents' }}" title="Top Events">Top Events</a></li>
                                 <li><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#events' : route('home') .'#events' }}" title="Events">Events</a></li>
                                 <li class="{{ Request::is( 'occations' ) ? 'active' : '' }}"><a href="#" onclick="javascript:location.href ='{{route("occations")}}'" title="Occasions">Occasions</a></li>

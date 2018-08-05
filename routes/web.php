@@ -50,6 +50,13 @@ Route::prefix('admin')->group(function () {
     
     Route::get('/cms-pages', 'CmsController@index')->name('cms-pages');
     Route::post('/cms-pages', 'CmsController@update')->name('cms-pages-update');
+    
+    Route::get("/venues","VenueController@adminindex");
+    Route::get("/create-venue","VenueController@admincreate");
+    Route::post("/store-venue","VenueController@adminstore");
+    Route::get("/venue-edit/{id}","VenueController@adminedit");
+    Route::post("/venue-update","VenueController@adminupdate");
+    Route::get("/venue-delete/{id}","VenueController@admindelete");
 });
 
 Auth::routes();

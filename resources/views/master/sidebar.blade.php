@@ -39,6 +39,7 @@
                             @if(session("admintype") == "admin")
                             <li id="home"><a href="{{ url('/admin') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
                             <li id="categories"><a href="{{ url('/admin/show-all-categories') }}"><i class="icon-paint-format"></i> <span>Event Categories</span></a></li>
+                            <li id="venues"><a href="{{ url('/admin/venues') }}"><i class="icon-clapboard-play"></i> <span>Venues</span></a></li>
                             <li id="events"><a href="{{ url('/admin/show-all-events') }}"><i class="icon-clapboard-play"></i> <span>Events</span></a></li>
                             <li id="users"><a href="{{ url('/admin/show-all-users') }}"><i class="icon-user"></i> <span>Users</span></a></li>
                             <li id="advertisers"><a href="{{ url('/admin/show-all-advertisers') }}"><i class="icon-user"></i> <span>Advertisers</span></a></li>

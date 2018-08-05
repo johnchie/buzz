@@ -276,8 +276,6 @@ p.drop-caps.secundary:first-child:first-letter { background-color: #f34834; colo
 
 #mainmenu > ul > li > a { text-decoration:none; padding:0; display:block; color:#fff; width:108px; background:url(../images/menu-btn.png) center center no-repeat; text-align:center; height:39px; margin-left:-18px; position:relative  }
 
-#mainmenu ul li img { margin-top:10px; }
-
 #mainmenu ul li ul { position:absolute; background:#000; right:0; max-width:200px; padding:0; width:100%; text-align:left; display:none; z-index:2 }
 
 #mainmenu ul li ul li { display:block; width:100% }
@@ -706,6 +704,8 @@ ul.zg-ul-select.active li.active:hover { background: #0074d9; }
 
 .white-box { background:#ffffff;  }
 
+#events .white-box{height:420px;}
+
 .white-box > a img { width:100%; }
 
 .event-data:after { content:''; display:table; clear:both }
@@ -770,19 +770,23 @@ ul.zg-ul-select.active li.active:hover { background: #0074d9; }
 
 .date-picker { padding:0; margin:0; list-style:none; text-align:left; float:left  }
 
+.filter-box .date-picker{width:40%;}
+
 .filter-box { background:#FFF; margin-top:15px; }
 
 .filter-box:after { content:''; clear:both; display:table }
 
 .date-picker li { position:relative } 
 
-.date-picker li input[type="text"] { padding-left:45px; border:none; width:160px; }
+.date-picker li input[type="text"] { padding-left:45px; border:none; width:100%; }
 
 .date-picker li span { position:absolute; left:10px; top:50%; margin-top:-12px; }
 
 .search-filter { float:right; position:relative }
 
-.search-filter input[type="search"]  { border:none; border-left:1px solid #7a7979; width:318px;; padding-right:50px  }
+.filter-box .search-filter{ width:30%; }
+
+.search-filter input[type="search"]  { border:none; border-left:1px solid #7a7979; width:100%; padding-right:50px  }
 
 .search-filter input[type="button"] { position:absolute; top:0; right:0; padding:0; height:48px; background:url(../images/search-icon.png) 0 0 no-repeat; width:48px;   }
 
@@ -791,6 +795,8 @@ ul.zg-ul-select.active li.active:hover { background: #0074d9; }
 .select-box select{ border:none; height:48px; }
 
 .select-box .custom-select:before { top:0 }
+
+.filter-box .select-box{ width:30%; }
 
 
 
@@ -840,15 +846,15 @@ ul.zg-ul-select.active li.active:hover { background: #0074d9; }
 
 .main-login .formlist li:first-child { margin:0 }
 
-.main-login .formlist li input[type="email"], .main-login .formlist li input[type="password"] { font-size:12px; color:#c4c4c4; border:none; border-bottom:1px solid #1885ff }
+.main-login .formlist li input[type="email"], .main-login .formlist li input[type="password"] { font-size:12px; color:#000; border:none; border-bottom:1px solid #1885ff }
 
 .main-login .formlist li label { font-size:13px; }
 
 .main-login .formlist li label a { color:#1885ff }
 
-.formlist input[type="submit"] { width:100%; background:#cccccc; border-radius:10px; }
+.formlist input[type="submit"] { width:100%; background:darkgrey; border-radius:10px; }
 
-.formlist input[type="submit"]:hover { background:#9a1818 }
+.formlist input[type="submit"]:hover { background:green }
 
 .pop-contentbox h5 a { margin:0; color:#1885ff; text-decoration:underline }
 
@@ -1071,3 +1077,16 @@ ul.zg-ul-select.active li.active:hover { background: #0074d9; }
 .favourites .col { margin-bottom:30px; }
 
 .favourites .col .white-box { border:1px solid #ddd }
+
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year{
+    width:50% !important;
+}
+
+.ui-datepicker-title{
+    margin:0 !important;
+}
+@media(max-width:767px){
+    .filter-box .select-box{ width:100%; }
+    .filter-box .search-filter{ width:100%; }
+    .filter-box .date-picker{width:100%;}
+}

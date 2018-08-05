@@ -24,7 +24,7 @@
                                         </h5>
                                     </div><!--/.event-date -->
                                     <div class="event-data-box">
-                                        <h4>{{ $event->title }}<span>{{ $event->category_name }}</span></h4>
+                                        <h4>{{str_limit($event->title, $limit = 20, $end = '...')}}<span>{{ $event->category_name }}</span></h4>
                                         <h6>@ {{ $event->venue }}</h6>
                                     </div><!--/.event-data-box --> 
                                 </div><!--/.event-data -->
@@ -67,7 +67,7 @@
                                             </li>
                                         </ul><!--/.share-option-small --> 
                                     </div><!--/.event-date -->
-                                    <div class="event-data-box"> <a href="#" class="button">What's On</a> </div><!--/.event-data-box --> 
+                                    <div class="event-data-box"> <a href="{{route("events.detail",$event->id)}}" class="button">What's On</a> </div><!--/.event-data-box --> 
                                 </div><!--/.action-box --> 
                             </div><!--/.white-box --> 
                         </div><!--/.col -->

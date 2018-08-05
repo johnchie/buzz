@@ -37,7 +37,7 @@
     </head>
     <body>
         <div id="wrapper">
-            <header id="header">
+            <header id="header" style="padding:0">
                 <div class="wrap"> <a href="{{URL('')}}" id="logo" title="what's on png"><img src="{{ URL::asset('public/website/images/logo.png') }}" alt=""></a>
                     <div class="rightpart">
                         <div class="download-app">
@@ -50,8 +50,8 @@
                                     $link_array[$value->page] = $value->data;
                                 }
                                 ?>
-                                <li><a href="{{$link_array['android_app']}}" title="" target="_blank"><img src="{{ URL::asset('public/website/images/app-store.png') }}" alt=""></a></li>
-                                <li><a href="{{$link_array['ios_app']}}" title="" target="_blank"><img src="{{ URL::asset('public/website/images/gplay-store.png') }}" alt=""></a></li>
+                                <li><a href="{{$link_array['android_app']}}" title="" target="_blank"><img width="125" height="42" src="{{ URL::asset('public/website/images/app-store-big.png') }}" alt=""></a></li>
+                                <li><a href="{{$link_array['ios_app']}}" title="" target="_blank"><img width="125" height="42" src="{{ URL::asset('public/website/images/gplay-store-bog.png') }}" alt=""></a></li>
                             </ul>
                         </div>
                         <nav id="mainmenu">
@@ -70,7 +70,8 @@
                                 @else
                                 <li class="afterlogin">
                                     <a href="javascript:void(0)" title="Sign in">
-                                        <img src="{{ URL::asset('public/website/images/user.png') }}" alt="My Account">
+                                        <!--<img src="{{ URL::asset('public/website/images/user.png') }}" alt="My Account">-->
+                                        Hi! {{str_limit(Session::get('U_NAME'), $limit = 5, $end = '')}}
                                     </a>
                                     <ul>
                                         <li><a href="{{route("favourites")}}" title="Favourites">Favourites</a></li>

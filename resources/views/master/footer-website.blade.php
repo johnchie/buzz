@@ -120,7 +120,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
+<script src="{{ URL::asset('public/website/js/vendor/toastr.min.js') }}"></script>
 
+
+@if (session('failure'))
+<script>toastr.error("{{ session('failure') }}")</script>
+@endif
+@if (session('success'))
+<script>toastr.success("{{ session('success') }}")</script>
+@endif
+            
 <script type="text/javascript">
 
 window.fbAsyncInit = function () {
@@ -234,7 +243,7 @@ jQuery('.event_like').click(function () {
                         } else {
                             $this.find('img').attr('src', '{!! asset("/public/website/images/fill-heart-icon.png") !!}');
                         }
-                        alert('Event favorite successfully.');
+                        toastr.success('Event favorite successfully.');
                     } else {
                         $this.attr('attr_flag', 1);
                         if ($this.attr('attr_large_icon') == 1) {
@@ -242,19 +251,19 @@ jQuery('.event_like').click(function () {
                         } else {
                             $this.find('img').attr('src', '{!! asset("/public/website/images/heart-icon.png") !!}');
                         }
-                        alert('Event removed from favourite successfully.');
+                        toastr.success('Event removed from favourite successfully.');
                     }
                 } else {
                     if ($this.attr('attr_flag') == 1) {
-                        alert('Problem while favourite event.');
+                        toastr.error('Problem while favourite event.');
                     } else {
-                        alert('Problem while unfavourite event.');
+                        toastr.error('Problem while unfavourite event.');
                     }
                 }
             }
         },
         error: function () {
-            alert('Error while processing request!');
+            toastr.error('Error while processing request!');
         }
     });
 });
@@ -290,6 +299,14 @@ function postToFeed(event) {
             $('.reg_type').val(2);  
             $('.register').click();
         });
+        
+        //show login popup if user is not logged in
+        if("{{Session::get('U_ID')}}" == ""){
+            setTimeout(function(){
+                jQuery(".login").click();
+            },1000);
+            console.log(jQuery('#login_click').find('.poptrigger'));
+        }
     });
 </script>
 <script src="{{ URL::asset('public/website/js/vendor/jquery.js') }}"></script> 

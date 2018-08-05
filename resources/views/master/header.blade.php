@@ -26,6 +26,22 @@
 	<script>
         $( function() {
             $( ".date-picker" ).datepicker();
+            $("#start_date").datepicker({
+                onClose: function() {
+                    $("#end_date").datepicker(
+                            "change",
+                            { minDate: new Date($('#start_date').val()) }
+                    );
+                }
+            });
+            $("#end_date").datepicker({
+                onClose: function() {
+                    $("#start_date").datepicker(
+                            "change",
+                            { maxDate: new Date($('#end_date').val()) }
+                    );
+                }
+            });
         } );
 	</script>
 
@@ -57,10 +73,6 @@
 
 	<script type="text/javascript" src="{{ URL::asset('public/js/plugins/ui/ripple.min.js') }}"></script>
 	<!-- /theme JS files -->
-
-
-
-
 </head>
 
 <body>
@@ -68,7 +80,7 @@
 	<!-- Main navbar -->
 	<div class="navbar navbar-default header-highlight">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="index.html"><img src="public/images/logo_light.png" alt=""></a>
+			<a class="navbar-brand" href="index.html"><img src="{{ URL::asset('public/website/images/logo.png') }}" alt=""></a>
 
 			<ul class="nav navbar-nav visible-xs-block">
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>

@@ -12,7 +12,7 @@
                         <div class="last_text">802-B Synergy  Tower, Ahmedabad</div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4">
                     <div class="inner_container">
                         <div><img src="{{ URL::asset('public/images/contact_call.png') }}"></div>
@@ -20,9 +20,9 @@
                         <div class="sub_text">Feel free to give us a call! </div>
                         <div class="last_text">+44 (0) 203 116 7711</div>
                     </div>
-                    
+
                 </div>
-                
+
                 <div class="col-md-4 border-none">
                     <div class="inner_container">
                         <div><img src="{{ URL::asset('public/images/contact_email.png') }}"></div>
@@ -33,32 +33,34 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            
+
             <div class="inquire_container">
                 <div class="inquire_title">
                     ENQUIRE NOW
                 </div>
-                <div class="contact_form">
-                    <input type="text" id="name" class="contact_input class_one" placeholder="Name" required="">
-                    <input type="text" id="email" class="contact_input class_two" placeholder="Email" required="">
-                    <div class="clearfix"></div>
-                    <input type="text" name="phone" id="phone" class="contact_input class_one" placeholder="Phone" required="">
-                    <select name="contact_type" id="type" class="contact_input class_two" required="">
-                        <option value="1">Feature</option>
-                        <option value="1">new</option>
-                        <option value="1">old</option>
-                    </select>
-                    <div class="clearfix"></div>
-                    <textarea name="message" id="message" class="contact_textarea" placeholder="Enter Message" required=""></textarea>
-                    <div class="captcha_container">
-                        <div id="calculation">10 + 5 =</div>
-                        <div class="captcha"><input type="text" class="contact_input" id="captcha"></div>
+                <form name="contact_ff" class="contact_ff" action="#"onsubmit="return valid_form();">
+                    <div class="contact_form">
+                        <input type="text" id="name" name="name" class="contact_input class_one" placeholder="Name" required="">
+                        <input type="email" id="email" name="email" class="contact_input class_two" placeholder="Email" required="">
+                        <div class="clearfix"></div>
+                        <input type="text" name="phone" id="phone" class="contact_input class_one" placeholder="Phone" required="">
+                        <select name="type" id="type" class="contact_input class_two" required="">
+                            <option value="1">Feature</option>
+                            <option value="1">new</option>
+                            <option value="1">old</option>
+                        </select>
+                        <div class="clearfix"></div>
+                        <textarea name="message" id="message" class="contact_textarea" placeholder="Enter Message" required=""></textarea>
+                        <div class="captcha_container">
+                            <div id="calculation">10 + 5 =</div>
+                            <div class="captcha"><input type="text" class="contact_input" id="captcha"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="submit_container">
+                            <input type="submit" value="Submit" class="contact_submit" />
+                        </div>
                     </div>
-                    <div class="clearfix"></div>
-                    <div class="submit_container">
-                        <input type="submit" value="Submit" class="contact_submit" />
-                    </div>
-                </div>
+                </form>
             </div>
         </div><!--/.wrap -->
     </div><!--/.advertisers -->
@@ -103,7 +105,7 @@
     }
     .contact_form{
         margin: 60px;
-        
+
     }
     .contact_input{
         background: #c3b4b1;
@@ -136,7 +138,7 @@
         float: right;
         margin-top: 10px;
     }
-    
+
     .contact_title{
         color:#fff;text-align: center;font-weight: bold;margin:20px 0 40px 0;
     }
@@ -173,3 +175,34 @@
     }
 </style>
 @include('master.footer-website')
+<script>
+    function valid_form() {
+        jQuery.ajax({
+            url: "{{route('contactusEmail')}}",
+            type: "get",
+            data: $('.contact_ff').serialize(),
+            dataType: 'json',
+            cache: false,
+            beforeSend: function () {
+                //$('#loading').show();
+            },
+            complete: function ()
+            {
+                //$('#loading').hide();
+            },
+            success: function (response)
+            {
+                if (response.success) {
+                    toastr.success('Thank you for contacting us.');
+                    $('.contact_ff').reset();
+                } else {
+                    toastr.error('Error sending email!');
+                }
+            },
+            error: function () {
+                toastr.error('Error sending email!');
+            }
+        });
+        return false;
+    }
+</script>

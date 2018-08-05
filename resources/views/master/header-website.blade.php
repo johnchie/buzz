@@ -9,10 +9,11 @@
         <meta name="author" content="">
         <link rel="shortcut icon" href="{{ URL::asset('public/website/images/favicon.ico') }}" />
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/website/css/swiper.min.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('public/website/css/style.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('public/website/css/style.css') }}?ver=1.1">
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/website/css/vendor/jquery-ui.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/website/css/vendor/owl.theme.default.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/website/css/vendor/owl.carousel.min.css') }}">
+        <link href="{{ URL::asset('public/website/css/vendor/toastr.min.css') }}" rel="stylesheet" />
         <link rel="stylesheet" href="{{ URL::asset('public/website/css/responsive.css') }}">
         <script src="{{ URL::asset('public/website/js/vendor/modernizr.min.js') }}"></script>
         <!--[if IE 9]>
@@ -57,7 +58,7 @@
                         <nav id="mainmenu">
                             <ul>
                                 <li class="{{ Request::is( '/' ) || Request::is( 'home' ) ? 'active' : '' }}"><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#home' : route('home') }}" title="Home">Home</a></li>
-                                <li class="{{ Request::is( 'venue' ) ? 'active' : '' }}"><a href="{{ route('venue_index') }}" title="Venue">Venue</a></li>
+                                <li class="{{ Request::is( 'venue' ) || Request::is( 'venue.detail' ) ? 'active' : '' }}"><a href="{{ route('venue_index') }}" title="Venue">Venue</a></li>
                                 <li><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#topevents' : route('home') .'#topevents' }}" title="Top Events">Top Events</a></li>
                                 <li><a href="{{ Request::is( '/' ) || Request::is( 'home' ) ? '#events' : route('home') .'#events' }}" title="Events">Events</a></li>
                                 <li class="{{ Request::is( 'occations' ) ? 'active' : '' }}"><a href="#" onclick="javascript:location.href ='{{route("occations")}}'" title="Occasions">Occasions</a></li>
@@ -126,14 +127,3 @@
                     </div><!--/.rightpart --> 
                 </div><!--/.wrap--> 
             </header><!--/#header-->
-@if (session('failure'))
-            <div class="alert alert-info">
-                {{ session('failure') }}
-            </div>
-            @endif
-
-            @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-            @endif

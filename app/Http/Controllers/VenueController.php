@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Venues;
+use App\Events;
 
 class VenueController extends Controller {
 
@@ -25,7 +26,14 @@ class VenueController extends Controller {
     }
 
     public function detail($id) {
-        return view('venue.detail');
+        $venue_data = Venues::where("id", $id)->where("status", "1")->get();
+        $venue_events = Events::where("venue_id", $id)->where("event_status", "1")->get();
+        if(empty($venue_data)){
+            \Session::flash('error', 'no venue found.');
+            return redirect('venue');
+        }
+        //echo "<pre>";print_r($venue_data->toArray());die;
+        return view('venue.detail', array('venue' => $venue_data[0], "events" => $venue_events));
     }
 
     public function adminindex() {

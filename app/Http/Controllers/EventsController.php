@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Events;
 use App\Eventslike;
+use App\Venues;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -275,6 +276,7 @@ class EventsController extends Controller {
             'description' => $request->input('description'),
             'image' => $mediaName,
             'category_id' => $request->input('category_id'),
+            'venue_id' => $request->input('venue_id'),
             'latitude' => $request->input('latitude'),
             'longtitude' => $request->input('longtitude'),
             'start_date' => strtotime($request->input('start_date')),
@@ -375,6 +377,7 @@ class EventsController extends Controller {
             'description' => $request->input('description'),
             'image' => $mediaName,
             'category_id' => $request->input('category_id'),
+            'venue_id' => $request->input('venue_id'),
             'latitude' => $request->input('latitude'),
             'longtitude' => $request->input('longtitude'),
             'start_date' => strtotime($request->input('start_date')),

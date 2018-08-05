@@ -10,7 +10,7 @@ class Events extends Model
 
     protected $fillable = [
         'title','short_description','description','image','start_date','end_date','venue','popular','top_events','category_id','latitude','longtitude','organized_name','address','city','state','contact_number','email','website_url',
-        "event_owner","event_status","event_type"
+        "event_owner","event_status","event_type","venue_id"
     ];
 
     protected $hidden = [

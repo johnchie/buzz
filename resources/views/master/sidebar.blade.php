@@ -11,10 +11,9 @@
                 <!-- User menu -->
                 <div class="sidebar-user-material">
                     <div class="category-content">
-                        <div class="sidebar-user-material-content">
+<!--                        <div class="sidebar-user-material-content">
                             <a href="#"><img src="assets/images/demo/users/face11.jpg" class="img-circle img-responsive" alt=""></a>
-
-                        </div>
+                        </div>-->
 
                         <div class="sidebar-user-material-menu">
                             <a href="#user-nav" data-toggle="collapse"><span>My Account</span> <i class="caret"></i></a>

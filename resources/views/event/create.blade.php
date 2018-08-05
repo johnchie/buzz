@@ -331,7 +331,7 @@
 
                                     <div class="col-md-4">
 
-                                        <input class="form-control date-picker" readonly  type="text" name="start_date" value="{{ old('start_date') }}">
+                                        <input class="form-control" readonly  type="text" id='start_date' name="start_date" value="{{ old('start_date') }}">
 
                                         <div class="form-control-feedback">
 
@@ -363,7 +363,7 @@
 
                                     <div class="col-md-4">
 
-                                        <input class="form-control date-picker" readonly type="text" name="end_date" value="{{ old('end_date') }}">
+                                        <input class="form-control" readonly type="text" name="end_date" id='end_date' value="{{ old('end_date') }}">
 
                                         <div class="form-control-feedback">
 
@@ -552,6 +552,48 @@
                                     <div class="col-md-4">
 
                                         <input type="checkbox" value="1" name="occasions">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                        <div class="form-group @if(in_array('venue_id',$error_keys)) {{ "has-error" }}   @endif">
+
+                            <label class="control-label col-lg-2">Venue</label>
+
+                            <div class="col-lg-10">
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+
+                                        <select name="venue_id" class="form-control">
+                                            <option value="">Please select Venue</option>
+                                            {{ $venue = \App\Venues::select('title')->orderBy('id','DESC')->get() }}
+
+                                            @foreach($venue as $vn)
+
+                                            <option value="{{ $vn->id }}">{{ $vn->title }}</option>
+
+                                            @endforeach
+
+                                        </select>
+
+                                        <div class="form-control-feedback">
+
+                                            @if(in_array('venue_id',$error_keys))
+
+                                            <i class="icon-notification2"></i>
+
+                                            @endif
+
+                                        </div>
+
+                                        <span class="help-block">Please select new venue here</span>
 
                                     </div>
 

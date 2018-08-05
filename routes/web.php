@@ -89,6 +89,7 @@ Route::get('/contactus', 'ContactusController@index')->name('contactus');
 Route::get('/aboutus', 'ContactusController@aboutus')->name('aboutus');
 Route::get('/privacy', 'ContactusController@privacy')->name('privacy');
 Route::get('/terms', 'ContactusController@terms')->name('terms');
+Route::get('/contactusemail', 'ContactusController@contactusEmail')->name('contactusEmail');
 Route::get('/occations', 'HomeController@occations')->name('occations');
 
 Route::get('/search', 'EventsController@searchEventWeb')->name('search');

@@ -311,6 +311,30 @@
 			}
 		});
 		}
+                
+                
+                if($('.ownslider2').length){
+		$('.ownslider2').owlCarousel({
+			loop: true,
+			responsiveClass: true,
+			nav: true,
+			autoplayTimeout: 5000,
+			navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+			autoplay: true,
+			responsive: {
+				0: {
+					items: 4
+				},
+				600: {
+					items: 4
+				},
+				1000: {
+					items: 4
+				}
+			}
+		});
+		}
+                
 	
 	
 	/*Scroll spy Topmenu

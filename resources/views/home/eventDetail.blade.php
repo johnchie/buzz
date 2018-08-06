@@ -112,159 +112,69 @@
             <h3>similar events</h3>
             <div class="similar-events-slider">
                 <div class="similar-banner owl-carousel">
+                    @foreach($similar_event as $event)
                     <div class="item">
-                        <div class="white-box"> <a href="#" title=""><img src="{{ URL::asset('public/website/images/events-pic01.png') }}" alt=""></a>
+                        <div class="white-box">
+                            <a href="{{route("events.detail",$event->id)}}" title="">
+                                <img src="{{ url('public/uploads/'.$event->image) }}" height="216" alt="">
+                            </a>
                             <div class="event-data">
                                 <div class="event-date">
-                                    <h5><span>April</span> 25<sup>th</sup> to 27<sup>th</sup></h5>
+                                    <h5>
+                                        <span><?php echo date('F', $event->start_date) ?></span> <?php echo date('d', $event->start_date) ?><sup><?php echo date('S', $event->start_date) ?></sup>
+                                        <br/>to<br/> 
+                                        <span><?php echo date('F', $event->end_date) ?></span> <?php echo date('d', $event->end_date) ?><sup><?php echo date('S', $event->end_date) ?></sup>
+                                    </h5>
                                 </div><!--/.event-date -->
                                 <div class="event-data-box">
-                                    <h4>FIESTA MUSIC<span>Fusion Rock</span></h4>
-                                    <h6>@Goroka</h6>
+                                    <h4>{{str_limit($event->title, $limit = 20, $end = '...')}}<span>{{ $event->category_name }}</span></h4>
+                                    <h6>@ {{ $event->venue }}</h6>
                                 </div><!--/.event-data-box --> 
                             </div><!--/.event-data -->
                             <div class="action-box">
                                 <div class="event-date">
                                     <ul class="share-option-small">
-                                        <li><a href="#" title=""><img src="images/heart-icon.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/share-icon.png" alt=""></a></li>
+                                        <li>
+                                            <a href="javascript:void(0);" class="event_like" attr_id="{{ $event->id }}" attr_flag="{{ $event->flag }}" title="">
+                                                @if($event->flag == '2')
+                                                <img src="{{ URL::asset('public/website/images/fill-heart-icon.png') }}" alt="">
+                                                @else
+                                                <img src="{{ URL::asset('public/website/images/heart-icon.png') }}" alt="">
+                                                @endif
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="share_container">
+                                                <a href="javascript:void(0)">
+                                                    <img class="share_btn" src="{{ URL::asset('public/website/images/share-icon.png') }}" alt="">
+                                                </a>
+                                                <div class="small_popup">
+                                                    <a class="close_share" href="javascript:void(0)" style="float: right;">X</a>
+                                                    <a 
+                                                        href="javasciprt:void(0)" 
+                                                        onclick="postToFeed(jQuery(this))" 
+                                                        data-link="{{route("events.detail",$event->id)}}" 
+                                                        data-name="{{$event->title}}"
+                                                        data-location="{{ $event->venue }}"
+                                                        data-image="{{ url('public/uploads/'.$event->image) }}">
+                                                        <img src="{{ URL::asset('public/website/images/fb.png') }}" alt="">
+                                                    </a>
+                                                    <a href="http://twitter.com/intent/tweet?text={{$event->title}}&url={{route('events.detail',$event->id)}}"+ onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">
+                                                        <img src="{{ URL::asset('public/website/images/tw.png') }}" alt="">
+                                                    </a>
+                                                    <a href="https://plus.google.com/share?url={{route("events.detail",$event->id)}}"+ onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                                                        <img src="{{ URL::asset('public/website/images/google.png') }}" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
                                     </ul><!--/.share-option-small --> 
                                 </div><!--/.event-date -->
-                                <div class="event-data-box"> <a href="#" class="button">What's On</a> </div><!--/.event-data-box --> 
+                                <div class="event-data-box"> <a href="{{route("events.detail",$event->id)}}" class="button">What's On</a> </div><!--/.event-data-box --> 
                             </div><!--/.action-box --> 
                         </div><!--/.white-box --> 
                     </div><!--/.item -->
-                    <div class="item">
-                        <div class="white-box"> <a href="#" title=""><img src="{{ URL::asset('public/website/images/events-pic01.png') }}" alt=""></a>
-                            <div class="event-data">
-                                <div class="event-date">
-                                    <h5><span>April</span> 25<sup>th</sup> to 27<sup>th</sup></h5>
-                                </div><!--/.event-date -->
-                                <div class="event-data-box">
-                                    <h4>FIESTA MUSIC<span>Fusion Rock</span></h4>
-                                    <h6>@Goroka</h6>
-                                </div><!--/.event-data-box --> 
-                            </div><!--/.event-data -->
-                            <div class="action-box">
-                                <div class="event-date">
-                                    <ul class="share-option-small">
-                                        <li><a href="#" title=""><img src="images/heart-icon.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/share-icon.png" alt=""></a></li>
-                                    </ul><!--/.share-option-small --> 
-                                </div><!--/.event-date -->
-                                <div class="event-data-box"> <a href="#" class="button">What's On</a> </div><!--/.event-data-box --> 
-                            </div><!--/.action-box --> 
-                        </div><!--/.white-box --> 
-                    </div><!--/.item -->
-                    <div class="item">
-                        <div class="white-box"> <a href="#" title=""><img src="{{ URL::asset('public/website/images/events-pic01.png') }}" alt=""></a>
-                            <div class="event-data">
-                                <div class="event-date">
-                                    <h5><span>April</span> 25<sup>th</sup> to 27<sup>th</sup></h5>
-                                </div><!--/.event-date -->
-                                <div class="event-data-box">
-                                    <h4>FIESTA MUSIC<span>Fusion Rock</span></h4>
-                                    <h6>@Goroka</h6>
-                                </div><!--/.event-data-box --> 
-                            </div><!--/.event-data -->
-                            <div class="action-box">
-                                <div class="event-date">
-                                    <ul class="share-option-small">
-                                        <li><a href="#" title=""><img src="images/heart-icon.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/share-icon.png" alt=""></a></li>
-                                    </ul><!--/.share-option-small --> 
-                                </div><!--/.event-date -->
-                                <div class="event-data-box"> <a href="#" class="button">What's On</a> </div><!--/.event-data-box --> 
-                            </div><!--/.action-box --> 
-                        </div><!--/.white-box --> 
-                    </div><!--/.item -->
-                    <div class="item">
-                        <div class="white-box"> <a href="#" title=""><img src="{{ URL::asset('public/website/images/events-pic01.png') }}" alt=""></a>
-                            <div class="event-data">
-                                <div class="event-date">
-                                    <h5><span>April</span> 25<sup>th</sup> to 27<sup>th</sup></h5>
-                                </div><!--/.event-date -->
-                                <div class="event-data-box">
-                                    <h4>FIESTA MUSIC<span>Fusion Rock</span></h4>
-                                    <h6>@Goroka</h6>
-                                </div><!--/.event-data-box --> 
-                            </div><!--/.event-data -->
-                            <div class="action-box">
-                                <div class="event-date">
-                                    <ul class="share-option-small">
-                                        <li><a href="#" title=""><img src="images/heart-icon.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/share-icon.png" alt=""></a></li>
-                                    </ul><!--/.share-option-small --> 
-                                </div><!--/.event-date -->
-                                <div class="event-data-box"> <a href="#" class="button">What's On</a> </div><!--/.event-data-box --> 
-                            </div><!--/.action-box --> 
-                        </div><!--/.white-box --> 
-                    </div><!--/.item -->
-                    <div class="item">
-                        <div class="white-box"> <a href="#" title=""><img src="{{ URL::asset('public/website/images/events-pic01.png') }}" alt=""></a>
-                            <div class="event-data">
-                                <div class="event-date">
-                                    <h5><span>April</span> 25<sup>th</sup> to 27<sup>th</sup></h5>
-                                </div><!--/.event-date -->
-                                <div class="event-data-box">
-                                    <h4>FIESTA MUSIC<span>Fusion Rock</span></h4>
-                                    <h6>@Goroka</h6>
-                                </div><!--/.event-data-box --> 
-                            </div><!--/.event-data -->
-                            <div class="action-box">
-                                <div class="event-date">
-                                    <ul class="share-option-small">
-                                        <li><a href="#" title=""><img src="images/heart-icon.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/share-icon.png" alt=""></a></li>
-                                    </ul><!--/.share-option-small --> 
-                                </div><!--/.event-date -->
-                                <div class="event-data-box"> <a href="#" class="button">What's On</a> </div><!--/.event-data-box --> 
-                            </div><!--/.action-box --> 
-                        </div><!--/.white-box --> 
-                    </div><!--/.item -->
-                    <div class="item">
-                        <div class="white-box"> <a href="#" title=""><img src="{{ URL::asset('public/website/images/events-pic01.png') }}" alt=""></a>
-                            <div class="event-data">
-                                <div class="event-date">
-                                    <h5><span>April</span> 25<sup>th</sup> to 27<sup>th</sup></h5>
-                                </div><!--/.event-date -->
-                                <div class="event-data-box">
-                                    <h4>FIESTA MUSIC<span>Fusion Rock</span></h4>
-                                    <h6>@Goroka</h6>
-                                </div><!--/.event-data-box --> 
-                            </div><!--/.event-data -->
-                            <div class="action-box">
-                                <div class="event-date">
-                                    <ul class="share-option-small">
-                                        <li><a href="#" title=""><img src="images/heart-icon.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/share-icon.png" alt=""></a></li>
-                                    </ul><!--/.share-option-small --> 
-                                </div><!--/.event-date -->
-                                <div class="event-data-box"> <a href="#" class="button">What's On</a> </div><!--/.event-data-box --> 
-                            </div><!--/.action-box --> 
-                        </div><!--/.white-box --> 
-                    </div><!--/.item --><div class="item">
-                        <div class="white-box"> <a href="#" title=""><img src="{{ URL::asset('public/website/images/events-pic01.png') }}" alt=""></a>
-                            <div class="event-data">
-                                <div class="event-date">
-                                    <h5><span>April</span> 25<sup>th</sup> to 27<sup>th</sup></h5>
-                                </div><!--/.event-date -->
-                                <div class="event-data-box">
-                                    <h4>FIESTA MUSIC<span>Fusion Rock</span></h4>
-                                    <h6>@Goroka</h6>
-                                </div><!--/.event-data-box --> 
-                            </div><!--/.event-data -->
-                            <div class="action-box">
-                                <div class="event-date">
-                                    <ul class="share-option-small">
-                                        <li><a href="#" title=""><img src="images/heart-icon.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/share-icon.png" alt=""></a></li>
-                                    </ul><!--/.share-option-small --> 
-                                </div><!--/.event-date -->
-                                <div class="event-data-box"> <a href="#" class="button">What's On</a> </div><!--/.event-data-box --> 
-                            </div><!--/.action-box --> 
-                        </div><!--/.white-box --> 
-                    </div><!--/.item -->
+                    @endforeach
                 </div><!--/.similar-banner owl-carousel -->
             </div><!--/.similar-events-slider -->
         </div><!--/.wrap -->

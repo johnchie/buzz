@@ -46,7 +46,7 @@ class ContactusController extends Controller {
         $params = \DB::table("cms")->where("page", "terms")->first();
         return view('contactus.terms', array('params' => $params));
     }
-    
+
     /**
      * Contactus email
      */
@@ -63,19 +63,17 @@ class ContactusController extends Controller {
         $data['baseurl'] = env('APP_URL');
         $email = 'rajmehta1270@gmail.com';
         //echo "<pre>";print_r($data);exit;
-        $is_send = \Mail::send('contactus.mailtemplate', $data, function ($message) use($from, $email, $subject) {
-            $message->from($from);
-            $message->to($email);
-            $message->subject($subject);
-        });
-        
-        $response['success'] = FALSE;
-        if($is_send){
-            $response['success'] = TRUE;
-        }
+        \Mail::send('contactus.mailtemplate', $data, function ($message) use($from, $email, $subject) {
+                    $message->from($from);
+                    $message->to($email);
+                    $message->subject($subject);
+                });
+
+        $response['success'] = TRUE;
+
         header('content-type:application/json');
-        echo json_encode($response);die;
-        
+        echo json_encode($response);
+        die;
     }
 
 }

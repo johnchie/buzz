@@ -23,7 +23,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="map_w">
-                <div id="map2"></div>
+                <div id="map2" style="height: 200px"></div>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -134,6 +134,7 @@
     }
     .map_w{
         width:35%;
+        height:35%;
         float: left;
     }
     .clearfix{
@@ -148,7 +149,7 @@
         }
     }
 </style>
-@include('master.footer-website')
+
 <script>
 // Initialize and add the map
     function initMap() {
@@ -169,3 +170,4 @@
 -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5TKneM6O59qvZq9IqRShqssdF_8miOkU&callback=initMap">
 </script>
+@include('master.footer-website')

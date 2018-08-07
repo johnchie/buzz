@@ -176,7 +176,15 @@
 </style>
 @include('master.footer-website')
 <script>
+    var start = Math.floor(Math.random() * 20) + 1 ;
+    var end = Math.floor(Math.random() * 20) + 1 ;
+    jQuery('#calculation').html(start + ' + ' + end + '=');
+    
     function valid_form() {
+        if(jQuery('#captcha').val() != parseInt(start) + parseInt(end)){
+            toastr.error('Captcha is invalid!');
+            return false;
+        }
         jQuery.ajax({
             url: "{{route('contactusEmail')}}",
             type: "get",
@@ -194,7 +202,10 @@
             {
                 if (response.success) {
                     toastr.success('Thank you for contacting us.');
-                    $('.contact_ff').reset();
+                    $('.contact_ff').trigger('reset');
+                    start = Math.floor(Math.random() * 20) + 1 ;
+                    end = Math.floor(Math.random() * 20) + 1 ;
+                    jQuery('#calculation').html(start + ' + ' + end + '=');
                 } else {
                     toastr.error('Error sending email!');
                 }

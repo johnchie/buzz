@@ -573,7 +573,7 @@
 
                                         <select name="venue_id" class="form-control">
                                             <option value="">Please select Venue</option>
-                                            {{ $venue = \App\Venues::select('title')->orderBy('id','DESC')->get() }}
+                                            {{! $venue = \App\Venues::select('title', 'id')->orderBy('id','DESC')->get() }}
 
                                             @foreach($venue as $vn)
 

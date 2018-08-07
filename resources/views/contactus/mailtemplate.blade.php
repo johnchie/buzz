@@ -1,5 +1,5 @@
 <body>
-    <div style="padding:20px 0;"><img src='{{$baseurl}}/website/images/logo.png' style='width:180px;'></div>
+    <div style="padding:20px 0;"><img src='{{$baseurl}}/public/website/images/logo.png' style='width:180px;'></div>
     <div style="padding:10px 0;">Hi {{ $userName }},</div>
     <div style="padding:10px 0;">You got inquiry from contact us page!</div>
     <div style="padding:10px 0;"><b>Name:</b> {{$name}}</div>
